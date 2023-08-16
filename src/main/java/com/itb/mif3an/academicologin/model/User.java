@@ -1,9 +1,17 @@
 package com.itb.mif3an.academicologin.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -15,7 +23,16 @@ public class User {
 	// public    : Acesso livre à todas as classes
 	// protected : Acesso liberado para as classes filhas (Herança)
 	
-	@Id
+	// GenerationType.AUTO      
+	// valor padrão (deixa para o provedor escolher a estratégia mais adequada)	
+	// GenerationType.SEQUENCE
+	// Informamos ao provedor a sequência a ser seguida, caso não o provedor escolherá
+	// a sequencia.
+	// GenerationType.TABLE
+	// Criamos uma tabela para gerenciar as chaves primárias, não há suporte para todos
+	// os provedores
+	
+	@Id  // PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-Incremento
 	private Long id;
 	private String firstName;
@@ -23,6 +40,37 @@ public class User {
 	private String email;
 	private String password;
 	
+	
+	// M:N
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+			    name="users_roles",
+			    joinColumns= @JoinColumn(name="user_id", referencedColumnName = "id"),
+			    inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id")
+			  )
+	private Collection<Role> roles;
+	
+	
+	// Construtor padrão: Não possui parâmetros
+	
+	public User() {
+		
+	}
+	
+	public User(String firstName) {
+	
+		this.firstName = firstName;
+	}
+
+	public User(String firstName, String lastName) {
+	
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
