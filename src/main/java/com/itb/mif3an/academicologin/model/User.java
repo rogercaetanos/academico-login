@@ -1,6 +1,7 @@
 package com.itb.mif3an.academicologin.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -39,6 +41,11 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	
+	// 1:N
+	@OneToMany   // Um usuário para muitos endereços
+	@JoinColumn(name="endereco_id")  // Chave estrangeira FK
+	private List<Endereco> enderecos;
 	
 	
 	// M:N
@@ -101,5 +108,23 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+	
+	
 	
 }
