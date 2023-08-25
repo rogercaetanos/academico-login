@@ -74,10 +74,16 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	
+	public User(String firstName, String lastName, String email, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
 
-
-
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
