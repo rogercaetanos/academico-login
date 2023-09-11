@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.itb.mif3an.academicologin.model.Role;
 import com.itb.mif3an.academicologin.model.User;
+import com.itb.mif3an.academicologin.repository.RoleRepository;
 import com.itb.mif3an.academicologin.service.UserService;
 
 @SpringBootApplication
@@ -26,14 +27,18 @@ public class AcademicoLoginApplication {
 	// Rotina que será executada no momento do start da aplicação!
 	
 	@Bean
-	CommandLineRunner run(UserService userService) {
+	CommandLineRunner run(UserService userService, RoleRepository roleRepository) {
 		return args -> {
-			/*
+			
+		if(roleRepository.findAll().size()  == 0) {
+			
 			userService.saveRole(new Role("ROLE_USER"));
 			userService.saveRole(new Role("ROLE_ADMIN"));
 			userService.saveRole(new Role("ROLE_INSTRUCTOR"));
 			userService.saveRole(new Role("ROLE_STUDENT"));
-			*/
+			
+		}
+			
 			
 		};
 	}
