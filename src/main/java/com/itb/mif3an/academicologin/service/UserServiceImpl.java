@@ -1,8 +1,12 @@
  package com.itb.mif3an.academicologin.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -52,9 +56,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		User user = userRepository.findByEmail(username);
+		if(user == null) {
+			throw new UsernameNotFoundException("Invalid username or password");
+			
+		}
+		
+		
+		return new org.springframework.security.core.userdetails.User(user.getEmail(),
+				                                                  user.getPassword(),
+				                                                  mapRoleToAuthorities(user.getRoles()));
 	}
+	
+	// Método responsável em trazer os papéis relacionados ao usuário
+	
+	private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
+	
+	
 
 	@Override
 	public void addRoleToUser(String username, String roleName) {
