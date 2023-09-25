@@ -32,11 +32,14 @@
 					Login Module</a>
 			</div>
 			
-			<div>
-			
+			<div id="navbar" class="collapse navbar-collapse">
+			     <ul class="nav navbar-nav">
+			          <li><a th:href="@{/users/perfil/{username}(username=${username})}">Perfil</a></li>
+			          <li><a>Sou Administrador</a></li>
+			          <li><a>Sou Usuário Comum</a></li>
+			          <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+			     </ul>
 			</div>
-			
-			
 			
 		</div>
 	</nav>
@@ -54,7 +57,7 @@
 						to our awesome app!</div>
 				</div>
 
-				<h1>Registration</h1>
+				<h1>Meu Perfil</h1>
 
 				<form th:action="@{/registration}" method="post" th:object="${user}">
 					<div class="form-group">
@@ -79,12 +82,27 @@
 					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
 
-					<div class="form-group">
-						<label class="control-label" for="password"> Password </label> <input
-							id="password" class="form-control" type="password"
-							th:field="*{password}" required autofocus="autofocus" />
-					</div>
 
+                   <div th:each="endereco: ${enderecos}">  
+                   
+                       <div th:if="${!enderecos.empty}">
+					      <div class="form-group">
+						    <label class="control-label" for="logradouro"> Logradouro</label> <input
+							  id="logradouro" class="form-control" type="text"
+							   th:field="*{endereco.logradouro}" required autofocus="autofocus" />
+					      </div>
+					  </div>  
+					  <div th:if="${enderecos.empty}">
+					     <div class="form-group">
+						   <label class="control-label" for="logradouro"> Logradouro</label> <input
+							  id="logradouro" class="form-control" type="text" required autofocus="autofocus" />
+					      </div>
+					  </div>  
+					     
+                   </div>
+                   
+                   
+                   
 					<div class="form-group">
 						<button type="submit" class="btn btn-success"
 						id="botao"
