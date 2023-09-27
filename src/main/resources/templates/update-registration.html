@@ -82,26 +82,14 @@
 					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
 
-
-                   <div th:each="endereco: ${enderecos}">  
-                   
-                       <div th:if="${!enderecos.empty}">
 					      <div class="form-group">
 						    <label class="control-label" for="logradouro"> Logradouro</label> <input
 							  id="logradouro" class="form-control" type="text"
-							   th:field="*{endereco.logradouro}" required autofocus="autofocus" />
+							   th:field="*{enderecos[0].logradouro}" required autofocus="autofocus" />
+							   
 					      </div>
-					  </div>  
-					  <div th:if="${enderecos.empty}">
-					     <div class="form-group">
-						   <label class="control-label" for="logradouro"> Logradouro</label> <input
-							  id="logradouro" class="form-control" type="text" required autofocus="autofocus" />
-					      </div>
-					  </div>  
-					     
-                   </div>
-                   
-                   
+					  
+					  
                    
 					<div class="form-group">
 						<button type="submit" class="btn btn-success"

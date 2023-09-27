@@ -1,6 +1,7 @@
 package com.itb.mif3an.academicologin.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,9 +46,9 @@ public class User {
 	private LocalDate dataNascimento;
 	
 	// 1:N
-	@OneToMany   // Um usuário para muitos endereços
-	@JoinColumn(name="endereco_id")  // Chave estrangeira FK
-	private List<Endereco> enderecos;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	
 	// M:N
