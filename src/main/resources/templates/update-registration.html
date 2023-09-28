@@ -81,16 +81,50 @@
 					</div>
 					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
-
+					
+					     <div class="form-group">
+						    <label class="control-label" for="dataNascimento"> Data de Nascimento</label> <input
+							  id="dataNascimento" class="form-control" type="date"
+							   th:field="*{dataNascimento}" required autofocus="autofocus" />
+							   
+					      </div>
+					
+					
+					      <div class="form-group">
+						    <label class="control-label" for="cep"> Cep</label> <input
+							  id="cep" class="form-control" type="text"
+							   th:field="*{enderecos[0].cep}" required autofocus="autofocus" />
+							   
+					      </div>
+					
 					      <div class="form-group">
 						    <label class="control-label" for="logradouro"> Logradouro</label> <input
 							  id="logradouro" class="form-control" type="text"
 							   th:field="*{enderecos[0].logradouro}" required autofocus="autofocus" />
 							   
 					      </div>
+					      
+					      <div class="form-group">
+						    <label class="control-label" for="logradouro"> Bairro</label> <input
+							  id="bairro" class="form-control" type="text"
+							   th:field="*{enderecos[0].bairro}" required autofocus="autofocus" />
+							   
+					      </div>
+					      
+					       <div class="form-group">
+						    <label class="control-label" for="logradouro"> Cidade</label> <input
+							  id="cidade" class="form-control" type="text"
+							   th:field="*{enderecos[0].cidade}" required autofocus="autofocus" />
+							   
+					      </div>
+					      
+					       <div class="form-group">
+						    <label class="control-label" for="logradouro"> Uf</label> <input
+							  id="uf" class="form-control" type="text"
+							   th:field="*{enderecos[0].uf}" required autofocus="autofocus" />
+							   
+					      </div>
 					  
-					  
-                   
 					<div class="form-group">
 						<button type="submit" class="btn btn-success"
 						id="botao"
