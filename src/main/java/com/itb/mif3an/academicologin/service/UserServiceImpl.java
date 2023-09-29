@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
 				             userDto.getLastName(), 
 				             userDto.getEmail(), 
 				             passwordEncoder.encode(userDto.getPassword()),
+				             new ArrayList<>(),
 				             new ArrayList<>());
 		      userRepository.save(user);
 		      this.addRoleToUser(user.getEmail(), "ROLE_USER");
@@ -108,6 +109,18 @@ public class UserServiceImpl implements UserService {
 		  User user = userRepository.findByEmail(username);
 		
 		return user;
+	}
+
+	@Override
+	public User update(UserDto userDto) {
+		
+		
+		User user = userRepository.findByEmail(userDto.getEmail());
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
+		user.setDataNascimento(userDto.getDataNascimento());
+		user.setEnderecos(userDto.getEnderecos());
+		return userRepository.save(user);
 	}
 
 	

@@ -59,7 +59,7 @@
 
 				<h1>Meu Perfil</h1>
 
-				<form th:action="@{/registration}" method="post" th:object="${user}">
+				<form th:action="@{/users/perfil}" method="post" th:object="${user}">
 					<div class="form-group">
 						<label class="control-label" for="firstName"> First Name </label>
 						<input id="firstName" class="form-control" th:field="*{firstName}"
@@ -129,7 +129,7 @@
 						<button type="submit" class="btn btn-success"
 						id="botao"
 						onclick=""
-						>Register</button>
+						>Atualizar Perfil</button>
 						<span>Already registered? <a href="/" th:href="@{/login}">Login
 								here</a></span>
 					</div>
