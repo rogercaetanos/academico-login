@@ -45,6 +45,7 @@ public class User {
 	private String email;
 	private String password;
 	private LocalDate dataNascimento;
+	private String principalRole;
 	
 	// 1:N
 	
@@ -166,6 +167,14 @@ public class User {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public String getPrincipalRole() {
+		return principalRole;
+	}
+
+	public void setPrincipalRole(String principalRole) {
+		this.principalRole = principalRole;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -184,5 +193,5 @@ public class User {
 	}
 	
 	
-	
+		
 }

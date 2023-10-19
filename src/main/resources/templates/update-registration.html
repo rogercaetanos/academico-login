@@ -75,9 +75,9 @@
 					<div class="form-group">
 						<label class="control-label" for="email"> Email </label> <input
 							id="email" class="form-control" th:field="*{email}" 
-							onblur="validarDados('email', document.getElementById('email').value,'/registration/ajax/getEmail/');"
+							onblur=""
 							required
-							autofocus="autofocus" />	
+							autofocus="autofocus" readonly />	
 					</div>
 					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
@@ -89,7 +89,8 @@
 							   
 					      </div>
 					
-					
+					<label class="control-label" for="lastName"> <h2>Endereço Principal</h2></label>
+					      
 					      <div class="form-group">
 						    <label class="control-label" for="cep"> Cep</label> <input
 							  id="cep" class="form-control" type="text"
