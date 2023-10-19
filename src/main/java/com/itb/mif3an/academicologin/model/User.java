@@ -97,10 +97,6 @@ public class User {
 		this.roles = roles;
 	}
 	
-	
-	
-	
-
 	public User(String firstName, String lastName, String email, String password, List<Endereco> enderecos,
 			Collection<Role> roles) {
 		
