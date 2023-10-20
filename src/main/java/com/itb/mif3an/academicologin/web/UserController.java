@@ -86,8 +86,8 @@ public class UserController {
 		
 		User user = userService.update(userDto);
 		
-		System.out.println(user.getEnderecos().get(0).getId());
-		System.out.println(user.getEnderecos().get(0).getCep());
+	//	System.out.println(user.getEnderecos().get(0).getId());
+	//	System.out.println(user.getEnderecos().get(0).getCep());
 		
 		return "redirect:/users/perfil/" + user.getEmail();
 	}

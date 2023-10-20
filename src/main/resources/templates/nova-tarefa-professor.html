@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>Home Page Administrativo</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/users/home-admin}">Registration and
+					Login Module</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/users/perfil/{username}(username=${username})}">Perfil</a></li>
+					<li><a th:href="@{/instructor/tarefas/todas-tarefas}">Tarefas</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+
+	<div class="container">
+	<br>
+	<br>
+		<div>
+			          <form th:action="@{/instructor/tarefas/add-tarefa}" 
+                    				   enctype="multipart/form-data" th:object="${tarefa}" method="post">
+                        <div class="row">
+                          
+                            <div class="form-group col-md-12">
+                                <label for="nome" class="col-form-label">Nome</label>
+                                <input type="text" th:field="*{nome}"  class="form-control" id="nome" placeholder="Nome">
+       
+                            </div>
+                            
+                           <div class="form-group col-md-12">
+                                <label for="descricao" class="col-form-label">Descrição:</label>
+                                <textarea th:field="*{descricao}" class="form-control" id="descricao" rows="4" placeholder="Descrição"> </textarea>
+                                <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group col-md-2">
+                                <label for="statusProd" class="col-form-label">Data da Entrega</label>
+                                <input type="date" th:field="*{dataEntrega}" class="form-control" id="statusProd" placeholder="statusProd">
+                                
+                            </div>
+                            
+                        	<!-- <div class="form-group col-md-5">-->
+                                <!-- <label for="id" class="col-form-label">Foto:</label>-->
+                                <!-- <img th:src="${(hasImageInDatabase ?: '/my-files/main-logo': '/img/default-logo.png'}"/> -->
+                                 <!--<img th:src="@{${foto} ?'data:image/jpeg;base64,'+${foto} : '/img/padrao.jpg'}" alt="..." class="rounded mx-auto d-block img-fluid"/>-->
+                                   <!-- <img th:src="@{'data:image/jpeg;base64,'+${foto}}" alt="..." class="rounded mx-auto d-block img-fluid"/>-->
+                            <!--</div>-->
+     
+                                                                                 
+                             <div class="form-group col-md-5">
+                             	<label for="uploadImage" class="form-label">Escolher Imagem:</label>
+  								<input class="form-control" type="file" id="uploadImage" onchange="preViewImg();" name="file" accept="image/*" />
+                            </div>
+                            
+                            <div class="form-group col-md-5">
+                             	<!--  <label for="preView" class="form-label">Imagem Escolhida:</label>-->
+  								<img id="preView" src="/img/padrao.jpg" alt="..." class="rounded mx-auto d-block img-fluid"/>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <input type="submit"  class="btn btn-primary mb-2" value="Salvar Tarefa">
+                            </div>
+                            
+                        </div>
+               
+                    </form>
+		</div>
+		<br>
+		
+	</div>
+	
+	 <script type="text/javascript">
+        	function preViewImg() {
+				var imgPV = new FileReader();
+				imgPV.readAsDataURL(document.getElementById("uploadImage").files[0]);
+				
+				imgPV.onload = function (imgPVEvent) {
+					document.getElementById("preView").src = imgPVEvent.target.result;
+				}
+			}
+        </script>
+</body>
+</html>
