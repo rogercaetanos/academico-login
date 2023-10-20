@@ -94,13 +94,15 @@
 					      <div class="form-group">
 						    <label class="control-label" for="cep"> Cep</label> <input
 							  id="cep" class="form-control" type="text"
-							   th:field="*{enderecos[0].cep}" required autofocus="autofocus" />
+							   th:field="*{enderecos[0].cep}" 
+							   onblur="pesquisacep(this.value);"
+							   required autofocus="autofocus" />
 							   
 					      </div>
 					
 					      <div class="form-group">
 						    <label class="control-label" for="logradouro"> Logradouro</label> <input
-							  id="logradouro" class="form-control" type="text"
+							  id="rua" class="form-control" type="text"
 							   th:field="*{enderecos[0].logradouro}" required autofocus="autofocus" />
 							   
 					      </div>

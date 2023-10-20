@@ -53,10 +53,6 @@ public class UserController {
 	
 	
 	
-	
-	
-	
-	
 	@GetMapping("/users/home")
 	public String homeUser(Model model) {
 		
