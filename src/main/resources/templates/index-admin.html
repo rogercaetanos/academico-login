@@ -28,8 +28,9 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 					<li><a th:href="@{/users/perfil/{username}(username=${username})}">Perfil</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/admin/usuarios/todos-usuarios}">Gestão de Usuários</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
 			</div>
 		</div>
