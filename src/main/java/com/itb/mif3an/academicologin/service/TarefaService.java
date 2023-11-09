@@ -8,5 +8,6 @@ public interface TarefaService {
 	
 	Tarefa save(Tarefa tarefa);
 	List<Tarefa> findAll();
+	List<Tarefa> findTarefasByIdUser(Long idUsuario);
 
 }

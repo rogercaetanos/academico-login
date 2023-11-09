@@ -28,4 +28,10 @@ public class TarefaServiceImpl implements TarefaService {
 		return tarefaRepository.findAll();
 	}
 
+	@Override
+	public List<Tarefa> findTarefasByIdUser(Long idUsuario) {
+		
+		return tarefaRepository.findTarefasByIdUser(idUsuario);
+	}
+
 }

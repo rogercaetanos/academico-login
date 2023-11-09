@@ -52,9 +52,6 @@ public class UserServiceImpl implements UserService {
 		
 		// Algoritmo para criptografar a senha :  passwordEncoder
 		
-		
-	    
-		
 		User user = new User(userDto.getFirstName(),
 				             userDto.getLastName(), 
 				             userDto.getEmail(), 
@@ -70,8 +67,9 @@ public class UserServiceImpl implements UserService {
 		user.setEnderecos(enderecos);
 		
 		
-		
+		      
 		      userRepository.save(user);
+		      user.setPrincipalRole("ROLE_USER");
 		      this.addRoleToUser(user.getEmail(), "ROLE_USER");
 		      return user;
 		      
