@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Editar Usuário</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    </head>
+    <body>
+    		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/admin/home}">Registration and
+					Login Module</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					
+					<li><a th:href="@{/users/perfil/{username}(username=${username})}">Perfil</a></li>
+					<li><a th:href="@{/admin/usuarios/todos-usuarios}">Gestão de Usuários</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
+    
+    <div class="container bg-light mt-4">
+        <div class="container my-5">
+        <div>
+           <a th:href="@{/admin/usuarios/todos-usuarios}" class="btn btn-primary my-2">
+           		<i class="fas fa-list ml-2"></i>
+           		Todos Usuários
+           </a>
+           <h2 class="mb-5">Editar Usuário</h2>
+        </div>   
+            <div class="row">
+                <div class="border p-2">
+                    <form action="#" th:action="@{/admin/usuarios/update-principal-role/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+                        <div class="row">
+                        
+                            <div class="form-group col-md-12">
+                                <label for="nome" class="col-form-label">Nome:</label>
+                                <input type="text" th:field="*{firstName}" class="form-control" id="nome" placeholder="Nome" readonly>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <label for="preco" class="col-form-label">Sobrenome:</label>
+                                <input type="text" th:field="*{lastName}" class="form-control" id="preco" placeholder="Sobrenome" readonly>
+                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="text" th:field="*{email}" class="form-control" id="statusProd" placeholder="Email" readonly>
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <label for="principalRole" class="col-form-label">Papel Principal:</label>
+                                <input type="text" th:field="*{principalRole}" class="form-control" id="principalRole" placeholder="Papel principal" readonly>
+                                <span th:if="${#fields.hasErrors('principalRole')}" th:errors="*{principalRole}" class="text-danger"></span>
+                            </div>
+                            
+                             <div class="form-group col-md-12">
+                             <label for="outrosPapeis" class="col-form-label">Todos Papeis:</label>
+                                <ul>
+                                    <li th:each="r : *{roles}" th:text="${r.name}">
+                                </ul>
+                            </div>
+                          
+                            <div class="form-group col-md-6">
+                              <br>
+                                <label for="tipoProd" class="col-form-label">Escolha um novo papel Principal:</label>
+          
+                                <select name="roleName" >				      
+										<option 
+											th:each="role : ${allRoles}" 
+											th:if="${role.name != 'ROLE_ADMIN'}"
+											th:text="${role.name}" th:value="${role.name}">
+										</option>	 
+								</select>
+                            </div>
+                                                                                   
+                            <div class="form-group col-md-12">
+                                <input type="submit"  class="btn btn-primary mb-2" value="Atualizar Usuário">
+                            </div>
+                            
+                        </div>
+               
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

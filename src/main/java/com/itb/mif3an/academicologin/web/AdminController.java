@@ -1,5 +1,7 @@
 package com.itb.mif3an.academicologin.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,13 @@ public class AdminController {
 	@GetMapping("/usuarios/todos-usuarios")
 	public String showUsuarios(Model model) {
 		
-		return "";
+		User user = userService.getAuthenticatedUser();
+		String username = user.getEmail();
+		List<User> usuarios = userService.findAllUsersByExceptPrincipalRole("ROLE_ADMIN");
+		model.addAttribute("username", username);
+		model.addAttribute("usuarios", usuarios);
+		
+		return "lista-usuarios-admin";
 	}
 	
 	

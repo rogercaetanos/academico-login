@@ -80,7 +80,7 @@ public class InstructorController {
 		User user = userService.getAuthenticatedUser();
 		String username = user.getEmail();
 		
-		List<Tarefa> tarefasDb = tarefaService.findAll();
+		List<Tarefa> tarefasDb = tarefaService.findTarefasByIdUser(user.getId());
 		
 		if(tarefasDb != null) {
 			for(Tarefa t: tarefasDb) {
