@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itb.mif3an.academicologin.model.Role;
 import com.itb.mif3an.academicologin.model.User;
 import com.itb.mif3an.academicologin.service.UserService;
 
@@ -43,5 +45,19 @@ public class AdminController {
 		return "lista-usuarios-admin";
 	}
 	
+	@GetMapping("/usuarios/editar-user/{id}")
+	public String showUpdateFormUser(@PathVariable("id") Long id, Model model) {
+		User user = userService.getAuthenticatedUser();
+		List<Role> roles = userService.findAllRoles();
+		String username = user.getEmail();
+		
+		User userDb = userService.findUserById(id);
+		
+		model.addAttribute("usuario", userDb);
+		model.addAttribute("allRoles", roles);
+		model.addAttribute("username", username);
+		
+		return "update-usuario";
+	}
 	
 }

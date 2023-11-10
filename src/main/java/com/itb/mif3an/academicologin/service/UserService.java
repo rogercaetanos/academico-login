@@ -18,5 +18,8 @@ public interface UserService extends UserDetailsService{
 	User getAuthenticatedUser();
 	List<User> findAllUsersByExceptPrincipalRole(String principalRole);
 	User saveUser(User user);
+	List<Role> findAllRoles();
+	User findUserById(Long id);
+	
 
 }
